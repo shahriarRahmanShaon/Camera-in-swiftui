@@ -2,8 +2,7 @@ import SwiftUI
 import UIKit
 public struct ImagePicker {
   
-    public init() {
-    }
+    public init() {}
     
     struct Camera: UIViewControllerRepresentable{
         typealias pickedImageHandler = (UIImage?) -> Void
