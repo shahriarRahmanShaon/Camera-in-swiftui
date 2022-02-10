@@ -2,13 +2,13 @@ import SwiftUI
 import UIKit
 public struct ImagePicker {
   
-    public init() {}
+    public init() { }
     
-    struct Camera: UIViewControllerRepresentable{
+    public struct Camera: UIViewControllerRepresentable{
         typealias pickedImageHandler = (UIImage?) -> Void
         var handlePickedImage: pickedImageHandler
         
-        func makeUIViewController(context: Context) -> UIImagePickerController {
+        public func makeUIViewController(context: Context) -> UIImagePickerController {
             let picker = UIImagePickerController()
             picker.allowsEditing = true
             picker.sourceType = .photoLibrary
@@ -16,23 +16,23 @@ public struct ImagePicker {
             
             return picker
         }
-        func makeCoordinator() -> Coordinator {
+        public func makeCoordinator() -> Coordinator {
             Coordinator(handlePickedImage)
         }
-        class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+        public class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
             var handlePickedImage: pickedImageHandler
             
             init(_ handlePickedImage: @escaping pickedImageHandler){
                 self.handlePickedImage = handlePickedImage
             }
-            func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
                 handlePickedImage(info[.originalImage] as? UIImage)
             }
-            func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
                 handlePickedImage(nil)
             }
         }
-        func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
+        public func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
             
         }
         
